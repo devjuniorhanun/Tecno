@@ -1,0 +1,11 @@
+models:
+  Models\VariedadeCultura:
+    tenant_id: id foreign
+    cultura_id: id foreign
+    uuid: uuid
+    nome: string unique
+    tecnologia: string nullable
+    ciclo: string nullable
+    status: enum:Ativa,Desativada default:'Ativa'
+    softDeletes: true
+    timestamps: true
