@@ -1,9 +1,10 @@
 created:
-    - database/factories/Models/CulturaFactory.php
-    - database/migrations/2020_11_26_181211_create_culturas_table.php
-    - app/Models/Cultura.php
+    - database/factories/Models/VariedadeCulturaFactory.php
+    - database/migrations/2020_11_27_102807_create_variedade_culturas_table.php
+    - app/Models/VariedadeCultura.php
 models:
     Models\Safra: { tenant_id: 'biginteger unsigned', uuid: 'string:36', nome: string, data_inicio: 'date nullable', data_final: 'date nullable', status: 'enum:Ativa,Desativada default:Ativa' }
     Models\Tenant: { uuid: 'string:36', nome: string, cnpj: string, inscricao: string, url: 'string nullable', email: string, telefone: 'string nullable', logo: 'string nullable', status: 'enum:Ativa,Desativada default:Ativa' }
     Models\User: { uuid: 'string:36', name: string, email: string, email_verified_at: 'datetime nullable', password: string, two_factor_secret: 'text nullable', two_factor_recovery_codes: 'text nullable', remember_token: 'string:100 nullable', current_team_id: 'biginteger unsigned nullable', profile_photo_path: 'text nullable' }
     Models\Cultura: { tenant_id: 'id foreign', uuid: uuid, nome: 'string unique', status: 'enum:Ativa,Desativada default:''Ativa''', softdeletes: softDeletes, timestamps: timestamps }
+    Models\VariedadeCultura: { tenant_id: 'id foreign', cultura_id: 'id foreign', uuid: uuid, nome: 'string unique', tecnologia: 'string nullable', ciclo: 'string nullable', status: 'enum:Ativa,Desativada default:''Ativa''', softdeletes: softDeletes, timestamps: timestamps }

@@ -14,6 +14,7 @@
 	<ul class="nav-dropdown-items">
 		<li class="nav-item"><a class="nav-link" href="{{ backpack_url('safra') }}"><i class="nav-icon la la-question"></i> <span>Safras</span></a></li>
 		<li class="nav-item"><a class="nav-link" href="{{ backpack_url('cultura') }}"><i class="nav-icon la la-question"></i> <span>Culturas</span></a></li>
-		<!--	<li class="nav-item"><a class="nav-link" href="{{ backpack_url('variedadecultura') }}"><i class="nav-icon la la-question"></i> <span>Variedade Culturas</span></a></li> -->
+		<li class="nav-item"><a class="nav-link" href="{{ backpack_url('variedadecultura') }}"><i class="nav-icon la la-question"></i> <span>Variedade Culturas</span></a></li>
 	</ul>
 </li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('variedadecultura') }}'><i class='nav-icon la la-question'></i> VariedadeCulturas</a></li>
