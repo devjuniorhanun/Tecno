@@ -1,0 +1,30 @@
+models:
+  Models\Tenant:
+    uuid: uuid
+    nome: string unique
+    cnpj: string unique
+    url: string nullable
+    email: string unique
+    telefone: string nullable
+    logo: string nullable
+    status: enum:Ativa,Desativada default:'Ativa'
+    softDeletes: true
+    timestamps: true
+
+  Models\Safra:
+    tenant_id: id foreign
+    uuid: uuid
+    nome: string unique
+    data_inicio: date nullable
+    data_final: date nullable
+    status: enum:Ativa,Desativada default:'Ativa'
+    softDeletes: true
+    timestamps: true
+
+  Models\Cultura:
+    tenant_id: id foreign
+    uuid: uuid
+    nome: string unique
+    status: enum:Ativa,Desativada default:'Ativa'
+    softDeletes: true
+    timestamps: true
