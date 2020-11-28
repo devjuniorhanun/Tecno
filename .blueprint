@@ -1,7 +1,7 @@
 created:
-    - database/factories/Models/ProprietarioFactory.php
-    - database/migrations/2020_11_27_163546_create_proprietarios_table.php
-    - app/Models/Proprietario.php
+    - database/factories/Models/ProdutorFactory.php
+    - database/migrations/2020_11_27_170914_create_produtors_table.php
+    - app/Models/Produtor.php
 models:
     Models\Safra: { tenant_id: 'biginteger unsigned', uuid: 'string:36', nome: string, data_inicio: 'date nullable', data_final: 'date nullable', status: 'enum:Ativa,Desativada default:Ativa' }
     Models\Tenant: { uuid: 'string:36', nome: string, cnpj: string, inscricao: string, url: 'string nullable', email: string, telefone: 'string nullable', logo: 'string nullable', status: 'enum:Ativa,Desativada default:Ativa' }
@@ -9,3 +9,4 @@ models:
     Models\Cultura: { tenant_id: 'id foreign', uuid: uuid, nome: 'string unique', status: 'enum:Ativa,Desativada default:''Ativa''', softdeletes: softDeletes, timestamps: timestamps }
     Models\VariedadeCultura: { tenant_id: 'id foreign', cultura_id: 'id foreign', uuid: uuid, nome: 'string unique', tecnologia: 'string nullable', ciclo: 'string nullable', status: 'enum:Ativa,Desativada default:''Ativa''', softdeletes: softDeletes, timestamps: timestamps }
     Models\Proprietario: { tenant_id: 'id foreign', uuid: uuid, razao_social: 'string unique', nome_fantasia: 'string unique', abreviacao: 'string unique', tipo_pagamento: 'enum:Deposito,Transferencia default:''Deposito''', tipo: 'enum:Fisica,Juridica default:''Fisica''', data_nascimento: date, nascionalidade: 'string nullable', naturalidade: 'string nullable', estado_civel: 'enum:"Solteiro(a),Casado(a),Viuvo(a) default:''Solteiro(a)''', cpf_cnpj: 'string nullable', rg_inscriacao: 'string nullable', email: 'string nullable', telefone: 'string nullable', celular: 'string nullable', status: 'enum:Ativa,Desativada default:''Ativa''', cep: 'string nullable', estado: 'string nullable', cidade: 'string nullable', bairro: 'string nullable', endereco: 'string nullable', complemento: 'string nullable', numero: 'string nullable', softdeletes: softDeletes, timestamps: timestamps }
+    Models\Produtor: { tenant_id: 'id foreign', uuid: uuid, razao_social: 'string unique', nome_fantasia: 'string unique', abreviacao: 'string unique', tipo_pagamento: 'enum:Deposito,Transferencia default:''Deposito''', tipo: 'enum:Fisica,Juridica default:''Fisica''', data_nascimento: date, nascionalidade: 'string nullable', naturalidade: 'string nullable', estado_civel: 'enum:"Solteiro(a),Casado(a),Viuvo(a) default:''Solteiro(a)''', cpf_cnpj: 'string nullable', rg_inscriacao: 'string nullable', email: 'string nullable', telefone: 'string nullable', celular: 'string nullable', status: 'enum:Ativa,Desativada default:''Ativa''', cep: 'string nullable', estado: 'string nullable', cidade: 'string nullable', bairro: 'string nullable', endereco: 'string nullable', complemento: 'string nullable', numero: 'string nullable', softdeletes: softDeletes, timestamps: timestamps }

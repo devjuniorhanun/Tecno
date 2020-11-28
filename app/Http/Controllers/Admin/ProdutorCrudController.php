@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ProprietarioRequest;
+use App\Http\Requests\ProdutorRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class ProprietarioCrudController
+ * Class ProdutorCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ProprietarioCrudController extends CrudController
+class ProdutorCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class ProprietarioCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Proprietario::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/proprietario');
-        CRUD::setEntityNameStrings('proprietario', 'proprietarios');
+        CRUD::setModel(\App\Models\Produtor::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/produtor');
+        CRUD::setEntityNameStrings('Produtor', 'Produtores');
     }
 
     /**
@@ -39,7 +39,6 @@ class ProprietarioCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        
         CRUD::column('razao_social')->label('Razão Social');
         CRUD::column('abreviacao')->label('Abreviação');
         CRUD::column('tipo')->type('enum');
@@ -56,18 +55,17 @@ class ProprietarioCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(ProprietarioRequest::class);
+        CRUD::setValidation(ProdutorRequest::class);
 
-        CRUD::field('razao_social')->label('Razão Social.:')->size(3);
-        CRUD::field('nome_fantasia')->label('Nome Fantasia.:')->size(3);
+        CRUD::field('razao_social')->label('Razão Social.:')->size(4);
+        CRUD::field('nome_fantasia')->label('Nome Fantasia.:')->size(4);
         CRUD::field('abreviacao')->label('Abreviação.:')->size(2);
-        CRUD::field('tipo_pagamento')->label('Tipo Pagamento.:')->type('enum')->size(2);
         CRUD::field('tipo')->label('Tipo.:')->type('enum')->size(2);
         CRUD::field('data_nascimento')->label('Data Nascimento.:')->type('date')->size(2);
         CRUD::field('nascionalidade')->label('Nacionalidade.:')->size(2);
         CRUD::field('naturalidade')->label('Naturalidade.:')->size(2);
         CRUD::field('estado_civel')->label('Estado Civel.:')->type('enum')->size(2);
-        CRUD::field('cpf_cnpj')->label('Cpf / Cnpj.:')->size(2)->attributes(['class' => 'form-control cpfcnpj']);
+        CRUD::field('cpf_cnpj')->label('Cpf / Cnpj.:')->size(2);
         CRUD::field('rg_inscriacao')->label('Rg / Inscrição.:')->size(2);
         CRUD::field('email')->label('Email.:')->type('email')->size(4);
         CRUD::field('telefone')->label('Telefone.:')->size(2)->attributes(['class' => 'form-control telefone']);
@@ -80,12 +78,6 @@ class ProprietarioCrudController extends CrudController
         CRUD::field('endereco')->label('Endereço.:')->size(3)->attributes(['id' => 'endereco']);
         CRUD::field('complemento')->label('Complemento.:')->size(2);
         CRUD::field('numero')->label('Número.:')->size(2);
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
     }
 
     /**
@@ -96,13 +88,32 @@ class ProprietarioCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        $this->setupCreateOperation();CRUD::column('razao_social')->label('Razão Social.:')->size(4);
+        CRUD::column('nome_fantasia')->label('Nome Fantasia.:')->size(4);
+        CRUD::column('abreviacao')->label('Abreviação.:')->size(2);
+        CRUD::column('tipo')->label('Tipo.:')->type('enum')->size(2);
+        CRUD::column('data_nascimento')->label('Data Nascimento.:')->type('date')->size(2);
+        CRUD::column('nascionalidade')->label('Nacionalidade.:')->size(2);
+        CRUD::column('naturalidade')->label('Naturalidade.:')->size(2);
+        CRUD::column('estado_civel')->label('Estado Civel.:')->type('enum')->size(2);
+        CRUD::column('cpf_cnpj')->label('Cpf / Cnpj.:')->size(2);
+        CRUD::column('rg_inscriacao')->label('Rg / Inscrição.:')->size(2);
+        CRUD::column('email')->label('Email.:')->type('email')->size(4);
+        CRUD::column('telefone')->label('Telefone.:')->size(2);
+        CRUD::column('celular')->label('Celular.:')->size(2);
+        CRUD::column('status')->label('Status.:')->type('enum')->size(2);
+        CRUD::column('cep')->label('Cep.:')->size(2);
+        CRUD::column('estado')->label('Estado.:')->size(2);
+        CRUD::column('cidade')->label('Cidade.:')->size(2);
+        CRUD::column('bairro')->label('Bairro.:')->size(2);
+        CRUD::column('endereco')->label('Endereço.:')->size(2);
+        CRUD::column('complemento')->label('Complemento.:')->size(2);
+        CRUD::column('numero')->label('Número.:')->size(2);
     }
 
     protected function setupShowOperation()
     {
         $this->crud->set('show.setFromDb', false);
-
         CRUD::column('razao_social')->label('Razão Social');
         CRUD::column('nome_fantasia')->label('Nome Fantasia');
         CRUD::column('abreviacao')->label('Abreviação');
