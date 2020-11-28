@@ -10,7 +10,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use App\Models\Traits\Empresa;
 use \Backpack\CRUD\app\Models\Traits\CrudTrait;
 
-class Produtor extends Model
+class Fazenda extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -19,14 +19,15 @@ class Produtor extends Model
     use Empresa;
     use CrudTrait;
 
+
     // Gravação do Log
-    protected static $logName = 'Produtores'; // Nome do Log
+    protected static $logName = 'Fazendas'; // Nome do Log
     protected static $logAttributes = ['*']; // Pega todos os campos da entidade
     protected static $logOnlyDirty = true;
     protected static $submitEmptyLogs = false;
 
     // Define o nome da tabela
-    protected $table = 'produtors';
+    protected $table = 'fazendas';
 
     // Chave Primaria
     protected $primaryKey = 'id';
@@ -35,22 +36,14 @@ class Produtor extends Model
     //Define os campos da entidade
     protected $fillable = [
         'tenant_id',
+        'proprietario_id',
+        'produtor_id',
         'uuid',
-        'razao_social',
-        'nome_fantasia',
-        'abreviacao',
-        'tipo_pagamento',
-        'tipo',
-        'data_nascimento',
-        'nascionalidade',
-        'naturalidade',
-        'estado_civel',
-        'cpf_cnpj',
-        'rg_inscriacao',
-        'email',
-        'telefone',
-        'celular',
+        'nome',
+        'inscricao_estadual',
         'status',
+        'area_total',
+        'nome_gerente',
         'cep',
         'estado',
         'cidade',
@@ -68,17 +61,13 @@ class Produtor extends Model
     protected $casts = [
         'id' => 'integer',
         'tenant_id' => 'integer',
+        'proprietario_id' => 'integer',
+        'produtor_id' => 'integer',
+        'area_total' => 'double',
     ];
 
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'data_nascimento',
-    ];
 
+    // Define os Relacionamentos
     /**
      * Método empresa()
      * Responsavel por interligar as Entidades Safras com Empresa
@@ -91,14 +80,26 @@ class Produtor extends Model
     }
 
     /**
-     * Método fazendas()
-     * Responsavel por interligar as Entidades Produtor com Fazenda
-     * Traz todas as Fazenda refrente ao determinado Produtor
-     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     * Método proprietario()
+     * Responsavel por interligar as Entidades Fazenda com Proprietario
+     * Traz as informações do proprietario.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function fazendas()
+    public function proprietario()
     {
-        return $this->hasMany(Fazenda::class);
-        
+        return $this->belongsTo(Proprietario::class);
     }
+
+    /**
+     * Método produtor()
+     * Responsavel por interligar as Entidades Fazenda com Produtor
+     * Traz as informações do Produtor.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function produtor()
+    {
+        return $this->belongsTo(Produtor::class);
+    }
+
+    
 }

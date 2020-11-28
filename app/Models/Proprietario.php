@@ -82,12 +82,24 @@ class Proprietario extends Model
 
     /**
      * Método empresa()
-     * Responsavel por interligar as Entidades Safras com Empresa
+     * Responsavel por interligar as Entidades Proprietario com Empresa
      * Traz as informações da Empresa
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function empresa()
     {
         return $this->belongsTo(Tenants::class);
+    }
+
+    /**
+     * Método fazendas()
+     * Responsavel por interligar as Entidades Proprietario com Fazenda
+     * Traz todas as Fazenda refrente ao determinado Proprietario
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function fazendas()
+    {
+        return $this->hasMany(Fazenda::class);
+        
     }
 }

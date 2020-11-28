@@ -42,7 +42,7 @@ return [
             // How many items should be shown by default by the Datatable?
             // This value can be overwritten on a specific CRUD by calling
             // $this->crud->setDefaultPageLength(50);
-            'defaultPageLength' => 10,
+            'defaultPageLength' => 25,
 
             // A 1D array of options which will be used for both the displayed option and the value, or
             // A 2D array in which the first array is used to define the value options and the second array the displayed options
@@ -151,7 +151,7 @@ return [
         'reorder' => [
             // Define the size/looks of the content div for all CRUDs
             // To override per Controller use $this->crud->setReorderContentClass('class-string')
-            'contentClass'   => 'col-md-8 col-md-offset-2',
+            'contentClass'   => 'col-md-12',
         ],
 
     ],
@@ -161,11 +161,9 @@ return [
     | TRANSLATABLE CRUDS
     |-------------------
     */
-
     'show_translatable_field_icon'     => true,
     'translatable_field_icon_position' => 'right', // left or right   
     'locales' => [
         "pt_br" => "Portuguese (Brazil)",
     ],
-
 ];
