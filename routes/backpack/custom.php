@@ -18,8 +18,8 @@ Route::group([
     Route::crud('safra', 'SafraCrudController');
     Route::crud('cultura', 'CulturaCrudController');
     Route::crud('variedadecultura', 'VariedadeCulturaCrudController');
-    Route::crud('proprietario', 'ProprietarioCrudController');
-    
+    Route::crud('proprietario', 'ProprietarioCrudController');    
     Route::crud('produtor', 'ProdutorCrudController');
     Route::crud('fazenda', 'FazendaCrudController');
+    Route::crud('talhao', 'TalhaoCrudController');
 }); // this should be the absolute last line of this file

@@ -23,8 +23,9 @@
 		<li class="nav-item"><a class="nav-link" href="{{ backpack_url('proprietario') }}"><i class="nav-icon la la-question"></i> <span>Proprietarios</span></a></li>
 		<li class="nav-item"><a class="nav-link" href="{{ backpack_url('produtor') }}"><i class="nav-icon la la-question"></i> <span>Produtores</span></a></li>
 		<li class="nav-item"><a class="nav-link" href="{{ backpack_url('fazenda') }}"><i class="nav-icon la la-question"></i> <span>Fazendas</span></a></li>
-		<!-- <li class="nav-item"><a class="nav-link" href="{{ backpack_url('talhao') }}"><i class="nav-icon la la-question"></i> <span>Talhãos</span></a></li>
-		<li class="nav-item"><a class="nav-link" href="{{ backpack_url('locacaotalhao') }}"><i class="nav-icon la la-question"></i> <span>Locação Talhões</span></a></li> -->
+		<li class="nav-item"><a class="nav-link" href="{{ backpack_url('talhao') }}"><i class="nav-icon la la-question"></i> <span>Talhãos</span></a></li>
+		<!-- <li class="nav-item"><a class="nav-link" href="{{ backpack_url('locacaotalhao') }}"><i class="nav-icon la la-question"></i> <span>Locação Talhões</span></a></li> -->
 
 	</ul>
 </li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('talhao') }}'><i class='nav-icon la la-question'></i> Talhaos</a></li>

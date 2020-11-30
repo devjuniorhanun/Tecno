@@ -116,3 +116,16 @@ models:
     numero: string nullable
     softDeletes: true
     timestamps: true
+    relationships:
+      hasMany: Talhao
+
+  Models\Talhao:
+    tenant_id: id foreign
+    fazenda_id: id foreign
+    uuid: uuid
+    nome: string unique
+    area_total: double:10,2
+    bloco: string
+    status: enum:Ativo,Desativada default:'Ativo'
+    softDeletes: true
+    timestamps: true

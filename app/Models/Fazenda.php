@@ -101,5 +101,16 @@ class Fazenda extends Model
         return $this->belongsTo(Produtor::class);
     }
 
+    /**
+     * Método talhaos()
+     * Responsavel por interligar as Entidades Fazenda com Talhões
+     * Traz as informações dos Talhões, refrente a uma fazenda específica.
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function talhaos()
+    {
+        return $this->hasMany(Talhao::class);
+    }
+
     
 }

@@ -1,22 +1,14 @@
 models:
-  Models\Produtor:
+  Models\Fazenda:
     tenant_id: id foreign
+    proprietario_id: id foreign
+    produtor_id: id foreign
     uuid: uuid
-    razao_social: string unique
-    nome_fantasia: string unique
-    abreviacao: string unique
-    tipo_pagamento: enum:Deposito,Transferencia default:'Deposito'
-    tipo: enum:Fisica,Juridica default:'Fisica'
-    data_nascimento: date
-    nascionalidade: string nullable
-    naturalidade: string nullable
-    estado_civel: enum:"Solteiro(a),Casado(a),Viuvo(a) default:'Solteiro(a)'
-    cpf_cnpj: string nullable
-    rg_inscriacao: string nullable
-    email: string nullable
-    telefone: string nullable
-    celular: string nullable
+    nome: string unique
+    inscricao_estadual: string unique
     status: enum:Ativa,Desativada default:'Ativa'
+    area_total: double:10,2 nullable
+    nome_gerente: string nullable
     cep: string nullable
     estado: string nullable
     cidade: string nullable
@@ -24,5 +16,18 @@ models:
     endereco: string nullable
     complemento: string nullable
     numero: string nullable
+    softDeletes: true
+    timestamps: true
+    relationships:
+      hasMany: Talhao
+
+  Models\Talhao:
+    tenant_id: id foreign
+    fazenda_id: id foreign
+    uuid: uuid
+    nome: string unique
+    area_total: double:10,2
+    bloco: string
+    status: enum:Ativo,Desativada default:'Ativo'
     softDeletes: true
     timestamps: true

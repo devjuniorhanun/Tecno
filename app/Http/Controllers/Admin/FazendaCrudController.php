@@ -130,11 +130,6 @@ class FazendaCrudController extends CrudController
             ->label('Número.:')
             ->size(2);
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
     }
 
     /**
@@ -186,8 +181,7 @@ class FazendaCrudController extends CrudController
         // execute the FormRequest authorization and validation, if one is required
         $data = $this->crud->validateRequest()->all();
 
-        if(isset($data['area_total']))
-        {
+        if (isset($data['area_total'])) {
             $data['area_total'] = str_replace('.', "", $data['area_total']);
             $data['area_total'] = str_replace(',', ".", $data['area_total']);
         }
@@ -210,8 +204,7 @@ class FazendaCrudController extends CrudController
         // execute the FormRequest authorization and validation, if one is required
         $data = $this->crud->validateRequest()->all();
 
-        if(isset($data['area_total']))
-        {
+        if (isset($data['area_total'])) {
             $data['area_total'] = str_replace('.', "", $data['area_total']);
             $data['area_total'] = str_replace(',', ".", $data['area_total']);
         }
@@ -219,7 +212,7 @@ class FazendaCrudController extends CrudController
         $model = Fazenda::find($data['id']);
 
         $model->update($data);
-        
+
         // show a success message
         \Alert::success(trans('Fazenda Alterada com Sucesso'))->flash();
 
