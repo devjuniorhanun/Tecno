@@ -22,4 +22,6 @@ Route::group([
     Route::crud('produtor', 'ProdutorCrudController');
     Route::crud('fazenda', 'FazendaCrudController');
     Route::crud('talhao', 'TalhaoCrudController');
+    Route::crud('locacaotalhao', 'LocacaoTalhaoCrudController');
+    Route::post('locacaotalhao/variedade', 'LocacaoTalhaoCrudController@variedade');
 }); // this should be the absolute last line of this file

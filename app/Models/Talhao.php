@@ -76,4 +76,15 @@ class Talhao extends Model
         return $this->belongsTo(Fazenda::class);
     }
 
+    /** Método locacaoTalhaos()
+     * Responsavel por interligar as Entidades Talhão com LocacaoTalhao
+     * Traz os todas as locacaoTalhaos de um talhao
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function locacaoTalhaos()
+    {
+        return $this->hasMany(LocacaoTalhao::class);
+        
+    }
+
 }

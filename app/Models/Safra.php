@@ -39,6 +39,7 @@ class Safra extends Model
         'nome',
         'data_inicio',
         'data_final',
+        'status'
     ];
 
     /**
