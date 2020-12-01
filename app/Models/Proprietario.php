@@ -10,9 +10,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use App\Models\Traits\Empresa;
 use \Backpack\CRUD\app\Models\Traits\CrudTrait;
 
-class VariedadeCultura extends Model
+class Proprietario extends Model
 {
     use HasFactory, SoftDeletes;
+
     use LogsActivity;
     use Uuid;
     use Empresa;
@@ -20,13 +21,13 @@ class VariedadeCultura extends Model
 
 
     // Gravação do Log
-    protected static $logName = 'VariedadeCulturas'; // Nome do Log
+    protected static $logName = 'Proprietarios'; // Nome do Log
     protected static $logAttributes = ['*']; // Pega todos os campos da entidade
     protected static $logOnlyDirty = true;
     protected static $submitEmptyLogs = false;
 
     // Define o nome da tabela
-    protected $table = 'variedade_culturas';
+    protected $table = 'proprietarios';
 
     // Chave Primaria
     protected $primaryKey = 'id';
@@ -35,12 +36,29 @@ class VariedadeCultura extends Model
     //Define os campos da entidade
     protected $fillable = [
         'tenant_id',
-        'cultura_id',
         'uuid',
-        'nome',
-        'tecnologia',
-        'ciclo',
+        'razao_social',
+        'nome_fantasia',
+        'abreviacao',
+        'tipo_pagamento',
+        'tipo',
+        'data_nascimento',
+        'nascionalidade',
+        'naturalidade',
+        'estado_civel',
+        'cpf_cnpj',
+        'rg_inscriacao',
+        'email',
+        'telefone',
+        'celular',
         'status',
+        'cep',
+        'estado',
+        'cidade',
+        'bairro',
+        'endereco',
+        'complemento',
+        'numero',
     ];
 
     /**
@@ -51,13 +69,20 @@ class VariedadeCultura extends Model
     protected $casts = [
         'id' => 'integer',
         'tenant_id' => 'integer',
-        'cultura_id' => 'integer',
     ];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'data_nascimento',
+    ];
 
     /**
      * Método empresa()
-     * Responsavel por interligar as Entidades Safras com Empresa
+     * Responsavel por interligar as Entidades Proprietario com Empresa
      * Traz as informações da Empresa
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -67,25 +92,14 @@ class VariedadeCultura extends Model
     }
 
     /**
-     * Método cultura()
-     * Responsavel por interligar as Entidades VariedadesCultura com Cutlura
-     * Traz as informações da Cultura
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Método fazendas()
+     * Responsavel por interligar as Entidades Proprietario com Fazenda
+     * Traz todas as Fazenda refrente ao determinado Proprietario
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function cultura()
+    public function fazendas()
     {
-        return $this->belongsTo(Cultura::class);
-    }
-
-    /** Método locacaoTalhaos()
-     * Responsavel por interligar as Entidades Talhão com LocacaoTalhao
-     * Traz os todas as locacaoTalhaos de um talhao
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function locacaoTalhaos()
-    {
-        return $this->hasMany(LocacaoTalhao::class);
+        return $this->hasMany(Fazenda::class);
         
     }
-        
 }

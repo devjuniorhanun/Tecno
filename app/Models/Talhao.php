@@ -10,23 +10,23 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use App\Models\Traits\Empresa;
 use \Backpack\CRUD\app\Models\Traits\CrudTrait;
 
-class Safra extends Model
+class Talhao extends Model
 {
-    use CrudTrait;
     use HasFactory, SoftDeletes;
     use LogsActivity;
     use Uuid;
     use Empresa;
+    use CrudTrait;
 
 
      // Gravação do Log
-   protected static $logName = 'Safra'; // Nome do Log
+   protected static $logName = 'Talhao'; // Nome do Log
    protected static $logAttributes = ['*']; // Pega todos os campos da entidade
    protected static $logOnlyDirty = true;
    protected static $submitEmptyLogs = false;
 
    // Define o nome da tabela
-   protected $table = 'safras';
+   protected $table = 'talhaos';
 
    // Chave Primaria
    protected $primaryKey = 'id';
@@ -35,11 +35,12 @@ class Safra extends Model
    //Define os campos da entidade
    protected $fillable = [
         'tenant_id',
+        'fazenda_id',
         'uuid',
         'nome',
-        'data_inicio',
-        'data_final',
-        'status'
+        'area_total',
+        'bloco',
+        'status',
     ];
 
     /**
@@ -50,19 +51,9 @@ class Safra extends Model
     protected $casts = [
         'id' => 'integer',
         'tenant_id' => 'integer',
+        'fazenda_id' => 'integer',
+        'area_total' => 'double',
     ];
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'data_inicio',
-        'data_final',
-        'deleted_at'
-    ];
-
 
     /**
      * Método empresa()
@@ -73,6 +64,27 @@ class Safra extends Model
     public function empresa()
     {
         return $this->belongsTo(Tenants::class);
+    }
+
+    /** Método fazenda()
+     * Responsavel por interligar as Entidades Talhão com Fazenda
+     * Traz os dados da fazenda referente ao Talhão
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function fazenda()
+    {
+        return $this->belongsTo(Fazenda::class);
+    }
+
+    /** Método locacaoTalhaos()
+     * Responsavel por interligar as Entidades Talhão com LocacaoTalhao
+     * Traz os todas as locacaoTalhaos de um talhao
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function locacaoTalhaos()
+    {
+        return $this->hasMany(LocacaoTalhao::class);
+        
     }
 
 }

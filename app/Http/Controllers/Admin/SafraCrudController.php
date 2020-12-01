@@ -39,10 +39,12 @@ class SafraCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->addCustomCrudFilters();
+//        $this->addCustomCrudFilters();
         CRUD::column('nome')->label('Safra.:');
         CRUD::column('data_inicio')->label('Inicio.:')->type('datetime')->format('DD/MM/YYYY');
         CRUD::column('data_final')->label('Final.:')->type('datetime')->format('DD/MM/YYYY');
+        CRUD::column('status')->label('Status.:')->size(3)->type('enum');
+
         //CRUD::enableDetailsRow();
 
         /**
@@ -67,11 +69,6 @@ class SafraCrudController extends CrudController
         CRUD::field('data_final')->label('Final.:')->size(3);
         CRUD::field('status')->label('Status.:')->size(3)->type('enum');
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
     }
 
     /**
@@ -94,7 +91,7 @@ class SafraCrudController extends CrudController
         CRUD::column('data_final')->label('Final')->type('datetime')->format('DD/MM/YYYY')->size(4);
     }
 
-    protected function addCustomCrudFilters()
+    /*protected function addCustomCrudFilters()
     {
         CRUD::filter('nome')
             ->type('text')
@@ -102,17 +99,17 @@ class SafraCrudController extends CrudController
             ->whenActive(function ($value) {
                 CRUD::addClause('where', 'nome', 'LIKE', "%$value%");
             });
-            CRUD::filter('data_inicio')
-                ->type('date')
-                ->label('Inicio')
-                ->whenActive(function ($value) {
-                    CRUD::addClause('where', 'data_inicio', '=', $value);
-                });
-                CRUD::filter('data_final')
-                ->type('date')
-                ->label('Final')
-                ->whenActive(function ($value) {
-                    CRUD::addClause('where', 'data_final', '=', $value);
-                });
-    }
+        CRUD::filter('data_inicio')
+            ->type('date')
+            ->label('Inicio')
+            ->whenActive(function ($value) {
+                CRUD::addClause('where', 'data_inicio', '=', $value);
+            });
+        CRUD::filter('data_final')
+            ->type('date')
+            ->label('Final')
+            ->whenActive(function ($value) {
+                CRUD::addClause('where', 'data_final', '=', $value);
+            });
+    }*/
 }

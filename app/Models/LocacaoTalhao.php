@@ -10,9 +10,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use App\Models\Traits\Empresa;
 use \Backpack\CRUD\app\Models\Traits\CrudTrait;
 
-class VariedadeCultura extends Model
+class LocacaoTalhao extends Model
 {
     use HasFactory, SoftDeletes;
+
     use LogsActivity;
     use Uuid;
     use Empresa;
@@ -20,13 +21,13 @@ class VariedadeCultura extends Model
 
 
     // Gravação do Log
-    protected static $logName = 'VariedadeCulturas'; // Nome do Log
+    protected static $logName = 'LocacaoTalhao'; // Nome do Log
     protected static $logAttributes = ['*']; // Pega todos os campos da entidade
     protected static $logOnlyDirty = true;
     protected static $submitEmptyLogs = false;
 
     // Define o nome da tabela
-    protected $table = 'variedade_culturas';
+    protected $table = 'locacao_talhaos';
 
     // Chave Primaria
     protected $primaryKey = 'id';
@@ -35,11 +36,17 @@ class VariedadeCultura extends Model
     //Define os campos da entidade
     protected $fillable = [
         'tenant_id',
+        'safra_id',
         'cultura_id',
-        'uuid',
-        'nome',
-        'tecnologia',
-        'ciclo',
+        'variedade_cultura_id',
+        'talhao_id',
+        'area_plantada',
+        'semente_linear',
+        'semente_populacao',
+        'inicio_plantio',
+        'final_plantio',
+        'data_prevista',
+        'observacoes',
         'status',
     ];
 
@@ -51,7 +58,22 @@ class VariedadeCultura extends Model
     protected $casts = [
         'id' => 'integer',
         'tenant_id' => 'integer',
+        'safra_id' => 'integer',
         'cultura_id' => 'integer',
+        'variedade_cultura_id' => 'integer',
+        'talhao_id' => 'integer',
+        'area_plantada' => 'double',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'inicio_plantio',
+        'final_plantio',
+        'data_prevista',
     ];
 
 
@@ -67,6 +89,17 @@ class VariedadeCultura extends Model
     }
 
     /**
+     * Método safra()
+     * Responsavel por interligar as Entidades LocacaoTalhao com Safra
+     * Traz as informações da Safra
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function safra()
+    {
+        return $this->belongsTo(Safra::class);
+    }
+
+    /**
      * Método cultura()
      * Responsavel por interligar as Entidades VariedadesCultura com Cutlura
      * Traz as informações da Cultura
@@ -77,15 +110,25 @@ class VariedadeCultura extends Model
         return $this->belongsTo(Cultura::class);
     }
 
-    /** Método locacaoTalhaos()
-     * Responsavel por interligar as Entidades Talhão com LocacaoTalhao
-     * Traz os todas as locacaoTalhaos de um talhao
+    /**
+     * Método variedadeCultura()
+     * Responsavel por interligar as Entidades LocacaoTalhao com VariedadeCultura
+     * Traz as informações da VariedadeCultura
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function locacaoTalhaos()
+    public function variedadeCultura()
     {
-        return $this->hasMany(LocacaoTalhao::class);
-        
+        return $this->belongsTo(VariedadeCultura::class);
     }
-        
+
+    /**
+     * Método talhao()
+     * Responsavel por interligar as Entidades LocacaoTalhao com Talhao
+     * Traz as informações da Talhao
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function talhao()
+    {
+        return $this->belongsTo(Talhao::class);
+    }
 }
