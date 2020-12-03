@@ -44,18 +44,18 @@ class FazendaCrudController extends CrudController
         CRUD::column('proprietario_id')->type('select')
             ->entity('Proprietario')
             ->attribute('razao_social')->size(2);
-
+        CRUD::column('produtor_id')->type('select')
+            ->entity('Produtor')
+            ->attribute('razao_social');
         CRUD::column('area_total')
             ->type('number')
             ->decimals(2)
             ->suffix(' ha')
             ->dec_point(',')
             ->thousands_sep('.');
-        CRUD::column('produtor_id')->type('select')
-            ->entity('Produtor')
-            ->attribute('razao_social');
         CRUD::column('inscricao_estadual')
-            ->label('Inscrição Estadual.:');
+            ->label('Inscrição Estadual');
+        CRUD::enableExportButtons();
     }
 
     /**
@@ -129,7 +129,6 @@ class FazendaCrudController extends CrudController
         CRUD::field('numero')
             ->label('Número.:')
             ->size(2);
-
     }
 
     /**

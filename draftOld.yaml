@@ -149,3 +149,75 @@ models:
     status: enum:Ativo,Desativada default:'Ativo'
     softDeletes: true
     timestamps: true
+
+  Models\GrupoProduto:
+    tenant_id: id foreign
+    uuid: uuid
+    nome: string unique
+    status: enum:Ativo,Desativada default:'Ativo'
+    softDeletes: true
+    timestamps: true
+    relationships:
+      hasMany: SubGrupoProduto, Produto
+
+  Models\SubGrupoProduto:
+    tenant_id: id foreign
+    grupo_produto_id: id foreign
+    uuid: uuid
+    nome: string unique
+    status: enum:Ativo,Desativada default:'Ativo'
+    softDeletes: true
+    timestamps: true
+    relationships:
+      hasMany: Produto
+
+  Models\Produto:
+    tenant_id: id foreign
+    grupo_produto_id: id foreign
+    sub_grupo_produto_id: id foreign
+    uuid: uuid
+    nome: string unique
+    unidade: string nullable
+    mcm: string nullable
+    estoque: double:10,3
+    qtn_minima: double:10,3
+    valor_unitario: double:10,3
+    finalidade: enum:Ativo,Desativada default:'Ativo'
+    localizacao_estoque: string nullable
+    status: enum:Ativo,Desativada default:'Ativo'
+    softDeletes: true
+    timestamps: true
+
+  Models\TipoOperacaoAgricula:
+    tenant_id: id foreign
+    uuid: uuid
+    nome: string unique
+    status: enum:Ativo,Desativada default:'Ativo'
+    softDeletes: true
+    timestamps: true
+
+  Models\OperadorAgricula:
+    tenant_id: id foreign
+    uuid: uuid
+    nome: string unique
+    status: enum:Ativo,Desativada default:'Ativo'
+    softDeletes: true
+    timestamps: true
+
+  Models\CentroAdministrativo:
+    tenant_id: id foreign
+    produtor_id: id foreign
+    fazenda_id: id foreign    
+    uuid: uuid   
+    softDeletes: true
+    timestamps: true
+
+  Models\CentroCusto:
+    tenant_id: id foreign
+    uuid: uuid
+    nome: string unique
+    tipo: enum:PRODUÇÃO,MÁQUINAS,ADMINISTRATIVO,COMBUSTÍVEL,DIVERSOS,LUBRIFICANTES,OFICINA default:'PRODUÇÃO'
+    status: enum:Ativo,Desativada default:Ativo
+    softDeletes: true
+    timestamps: true
+ 

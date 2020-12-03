@@ -24,4 +24,13 @@ Route::group([
     Route::crud('talhao', 'TalhaoCrudController');
     Route::crud('locacaotalhao', 'LocacaoTalhaoCrudController');
     Route::post('locacaotalhao/variedade', 'LocacaoTalhaoCrudController@variedade');
+    Route::crud('grupoproduto', 'GrupoProdutoCrudController');
+    Route::crud('subgrupoproduto', 'SubGrupoProdutoCrudController');
+    Route::crud('produto', 'ProdutoCrudController');
+    Route::post('produto/subgrupo', 'ProdutoCrudController@subgrupo');
+    Route::crud('tipooperacaoagricula', 'TipoOperacaoAgriculaCrudController');
+    Route::crud('operadoragricula', 'OperadorAgriculaCrudController');
+    Route::crud('centroadministrativo', 'CentroAdministrativoCrudController');
+    Route::post('centroadministrativo/fazenda', 'CentroAdministrativoCrudController@fazenda');
+    Route::crud('centrocusto', 'CentroCustoCrudController');
 }); // this should be the absolute last line of this file
