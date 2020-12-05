@@ -68,11 +68,11 @@ class CentroAdministrativoCrudController extends CrudController
             ->entity('produtor')
             ->attribute('razao_social')
             ->options(function ($query) {
-                return $query->where('status','=', 'Ativa')->orderBy('razao_social', 'ASC')->get();
+                return $query->where('status', '=', 'Ativa')->orderBy('razao_social', 'ASC')->get();
             })
             ->size(3);
 
-            CRUD::field('fazenda_id')
+        CRUD::field('fazenda_id')
             ->label('Variedade')
             ->type('select2_from_ajax')
             ->entity('fazenda')
@@ -126,6 +126,4 @@ class CentroAdministrativoCrudController extends CrudController
         }
         return $options;
     }
-
-    
 }

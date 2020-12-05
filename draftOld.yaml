@@ -96,7 +96,6 @@ models:
     softDeletes: true
     timestamps: true
 
-
   Models\Fazenda:
     tenant_id: id foreign
     proprietario_id: id foreign
@@ -220,4 +219,62 @@ models:
     status: enum:Ativo,Desativada default:Ativo
     softDeletes: true
     timestamps: true
- 
+
+  Models\Fornecedor:
+    tenant_id: id foreign
+    uuid: uuid
+    razao_social: string unique
+    nome_fantasia: string unique
+    cpf_cnpj: string unique
+    rg_inscricao: string unique
+    finalidade: enum:ARMAZÉNS GERAIS,COMBUSTÍVEIS,COLHEDOR,FUNCIONÁRIO,GERAL,INSUMOS,USO CONSUMO,TRANSPORTADOR
+    tipo: enum:FÍSICO,JURÍDICO
+    email: string nullable
+    telefone: string nullable
+    celular: string nullable
+    cep: string nullable
+    estado: string nullable
+    cidade: string nullable
+    bairro: string nullable
+    endereco: string nullable
+    complmento: string nullable
+    numero: string nullable
+    nome_contato: string nullable
+    email_contato: string nullable
+    telefone_contato: string nullable
+    status: enum:Ativo,Desativada
+    softDeletes: true
+    timestamps: true 
+
+  Models\LancamentoContaApagar:
+    tenant_id: id foreign
+    centro_custo_id: id foreign
+    fornecedor_id: id foreign
+    uuid: uuid
+    numero_documento: string
+    data_documento: date
+    data_vencimento: date
+    descricao: text
+    valor: double:10,2
+    valor_desconto: double:10,2
+    tipo: enum:BOLETO,DINHEIRO,CHEQUE,TRANSFERÊNCIA
+    status: enum:ABERTA,APAGA,CANCELADA
+    softDeletes: true
+    timestamps: true 
+
+  Models\LancamentoContaApagar:
+    tenant_id: id foreign
+    centro_custo_id: id foreign
+    fornecedor_id: id foreign
+    uuid: uuid
+    numero_documento: string
+    data_documento: date
+    data_vencimento: date
+    descricao: text
+    valor: double:10,2
+    valor_desconto: double:10,2
+    tipo: enum:BOLETO,DINHEIRO,CHEQUE,TRANSFERÊNCIA
+    status: enum:ABERTA,APAGA,CANCELADA
+    softDeletes: true
+    timestamps: true 
+

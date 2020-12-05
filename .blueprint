@@ -1,10 +1,7 @@
 created:
-    - database/factories/Models/CentroAdministrativoFactory.php
-    - database/factories/Models/CentroCustoFactory.php
-    - database/migrations/2020_12_03_083241_create_centro_administrativos_table.php
-    - database/migrations/2020_12_03_083242_create_centro_custos_table.php
-    - app/Models/CentroAdministrativo.php
-    - app/Models/CentroCusto.php
+    - database/factories/Models/LancamentoContaApagarFactory.php
+    - database/migrations/2020_12_03_142319_create_lancamento_conta_apagars_table.php
+    - app/Models/LancamentoContaApagar.php
 models:
     Models\CentroAdministrativo: { tenant_id: 'id foreign', produtor_id: 'id foreign', fazenda_id: 'id foreign', uuid: uuid, softdeletes: softDeletes, timestamps: timestamps }
     Models\Cultura: { tenant_id: 'biginteger unsigned', uuid: 'string:36', nome: string, status: 'enum:Ativa,Desativada default:Ativa' }
@@ -23,3 +20,5 @@ models:
     Models\User: { uuid: 'string:36', name: string, email: string, email_verified_at: 'datetime nullable', password: string, two_factor_secret: 'text nullable', two_factor_recovery_codes: 'text nullable', remember_token: 'string:100 nullable', current_team_id: 'biginteger unsigned nullable', profile_photo_path: 'text nullable' }
     Models\VariedadeCultura: { tenant_id: 'biginteger unsigned', cultura_id: 'biginteger unsigned', uuid: 'string:36', nome: string, tecnologia: 'string nullable', ciclo: 'string nullable', status: 'enum:Ativa,Desativada default:Ativa' }
     Models\CentroCusto: { tenant_id: 'id foreign', uuid: uuid, nome: 'string unique', tipo: 'enum:PRODUÇÃO,MÁQUINAS,ADMINISTRATIVO,COMBUSTÍVEL,DIVERSOS,LUBRIFICANTES,OFICINA default:PRODUÇÃO', status: 'enum:Ativo,Desativada default:Ativo', softdeletes: softDeletes, timestamps: timestamps }
+    Models\Fornecedor: { tenant_id: 'id foreign', uuid: uuid, razao_social: 'string unique', nome_fantasia: 'string unique', cpf_cnpj: 'string unique', rg_inscricao: 'string unique', finalidade: 'enum:ARMAZÉNS GERAIS,COMBUSTÍVEIS,COLHEDOR,FUNCIONÁRIO,GERAL,INSUMOS,USO CONSUMO,TRANSPORTADOR', tipo: 'enum:FÍSICO,JURÍDICO', email: 'string nullable', telefone: 'string nullable', celular: 'string nullable', cep: 'string nullable', estado: 'string nullable', cidade: 'string nullable', bairro: 'string nullable', endereco: 'string nullable', complmento: 'string nullable', numero: 'string nullable', nome_contato: 'string nullable', email_contato: 'string nullable', telefone_contato: 'string nullable', status: 'enum:Ativo,Desativada', softdeletes: softDeletes, timestamps: timestamps }
+    Models\LancamentoContaApagar: { tenant_id: 'id foreign', centro_custo_id: 'id foreign', fornecedor_id: 'id foreign', uuid: uuid, numero_documento: string, data_documento: date, data_vencimento: date, descricao: text, valor: 'double:10,2', valor_desconto: 'double:10,2', tipo: 'enum:BOLETO,DINHEIRO,CHEQUE,TRANSFERÊNCIA', status: 'enum:ABERTA,APAGA,CANCELADA', softdeletes: softDeletes, timestamps: true }

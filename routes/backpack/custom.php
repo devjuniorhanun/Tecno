@@ -33,4 +33,6 @@ Route::group([
     Route::crud('centroadministrativo', 'CentroAdministrativoCrudController');
     Route::post('centroadministrativo/fazenda', 'CentroAdministrativoCrudController@fazenda');
     Route::crud('centrocusto', 'CentroCustoCrudController');
+    Route::crud('fornecedor', 'FornecedorCrudController');
+    Route::crud('lancamentocontaapagar', 'LancamentoContaApagarCrudController');
 }); // this should be the absolute last line of this file
