@@ -36,4 +36,5 @@ jQuery(function ($) {
     $('.areas').mask("#.##0,00", { reverse: true });
     $('.inscricao').mask('00.000.000-0');
     $('.valores').mask("#.##0,00", { reverse: true });
+    $('.volume').mask("#.##0,000", { reverse: true });
 });
