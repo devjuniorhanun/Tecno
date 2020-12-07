@@ -35,4 +35,6 @@ Route::group([
     Route::crud('centrocusto', 'CentroCustoCrudController');
     Route::crud('fornecedor', 'FornecedorCrudController');
     Route::crud('lancamentocontaapagar', 'LancamentoContaApagarCrudController');
+    Route::crud('grupofrota', 'GrupoFrotaCrudController');
+    Route::crud('frota', 'FrotaCrudController');
 }); // this should be the absolute last line of this file
